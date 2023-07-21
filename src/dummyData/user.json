@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "username": "quan",
+    "firstname": "quan",
+    "surename": "doan",
+    "roles": [
+        "USER"
+    ],
+    "longitude": 25.4962,
+    "latitude": 65.0147,
+    "imageurl": null
+}

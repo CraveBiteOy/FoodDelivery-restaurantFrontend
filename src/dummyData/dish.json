@@ -1,0 +1,46 @@
+[
+    {
+        "id": 5,
+        "name": "ramen noodle",
+        "imageurl": null,
+        "description": "ramen noodles 5 is good",
+        "price": 11.0,
+        "availability": true,
+        "restaurant": 2,
+        "createdDate": "2023-07-16 07:40",
+        "updatedDate": "2023-07-16 07:40"
+    },
+    {
+        "id": 6,
+        "name": "soyja ramen",
+        "imageurl": null,
+        "description": "ramen noodles 6 is good",
+        "price": 12.0,
+        "availability": true,
+        "restaurant": 2,
+        "createdDate": "2023-07-16 07:40",
+        "updatedDate": "2023-07-16 07:40"
+    },
+    {
+        "id": 7,
+        "name": "dark soyja ramen",
+        "imageurl": null,
+        "description": "ramen noodles 7 is good",
+        "price": 12.0,
+        "availability": true,
+        "restaurant": 2,
+        "createdDate": "2023-07-16 07:40",
+        "updatedDate": "2023-07-16 07:40"
+    },
+    {
+        "id": 8,
+        "name": "spicy ramen",
+        "imageurl": null,
+        "description": "ramen noodles 8 is good",
+        "price": 12.0,
+        "availability": true,
+        "restaurant": 2,
+        "createdDate": "2023-07-16 07:40",
+        "updatedDate": "2023-07-16 07:40"
+    }
+]

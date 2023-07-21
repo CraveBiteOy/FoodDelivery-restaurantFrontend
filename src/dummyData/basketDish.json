@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "quantity": 2,
+        "dish": {
+            "id": 6,
+            "name": "soyja ramen",
+            "imageurl": null,
+            "description": "ramen noodles 6 is good",
+            "price": 12.0,
+            "availability": true,
+            "restaurant": 2,
+            "createdDate": "2023-07-16 07:40",
+            "updatedDate": "2023-07-16 07:40"
+        },
+        "basket": 1
+    }
+]

@@ -1,0 +1,167 @@
+[
+    {
+        "id": 1,
+        "customer": {
+            "id": 1,
+            "user": {
+                "id": 1,
+                "username": "quan",
+                "firstname": "quan",
+                "surename": "doan",
+                "roles": [
+                    "USER"
+                ],
+                "longitude": 25.4962,
+                "latitude": 65.0147,
+                "imageurl": null
+            }
+        },
+        "restaurant": {
+            "id": 2,
+            "name": "nekosama",
+            "address": "Kauppakortteli Pekuri, Kirkkokatu 16",
+            "imageurl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/uber-eats/restaurant2.jpeg",
+            "owner": 2,
+            "city": "oulu",
+            "zipcode": "90100",
+            "latitude": 65.0147,
+            "longitude": 25.4962,
+            "rating": 4.0,
+            "cookingTime": 30,
+            "createdDate": "2023-07-19 11:51",
+            "updatedDate": "2023-07-19 11:51",
+            "distance": 0.0,
+            "estimatedTime": 0
+        },
+        "courier": null,
+        "status": "COMPLETED",
+        "total": 24.0,
+        "deliveryFee": 7.81100622123588,
+        "finalPrice": 31.81100622123588,
+        "quantity": 2,
+        "note": "the door code is 4322",
+        "d2Distance": 4.81100622123588,
+        "totalTime": 54,
+        "pickedupTime": 30,
+        "dropOffTime": 24,
+        "toLongitude": 25.47411,
+        "toLatitude": 65.05695,
+        "fromLongitude": 25.4962,
+        "fromLatitude": 65.0147,
+        "address": "yliopistokatu 12",
+        "zipcode": "90570",
+        "city": "oulu",
+        "createdDate": "2023-07-19 11:52",
+        "updatedDate": "2023-07-19 11:52"
+    },
+    {
+        "id": 2,
+        "customer": {
+            "id": 1,
+            "user": {
+                "id": 1,
+                "username": "quan",
+                "firstname": "quan",
+                "surename": "doan",
+                "roles": [
+                    "USER"
+                ],
+                "longitude": 25.4962,
+                "latitude": 65.0147,
+                "imageurl": null
+            }
+        },
+        "restaurant": {
+            "id": 2,
+            "name": "nekosama",
+            "address": "Kauppakortteli Pekuri, Kirkkokatu 16",
+            "imageurl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/uber-eats/restaurant2.jpeg",
+            "owner": 2,
+            "city": "oulu",
+            "zipcode": "90100",
+            "latitude": 65.0147,
+            "longitude": 25.4962,
+            "rating": 4.0,
+            "cookingTime": 30,
+            "createdDate": "2023-07-19 11:51",
+            "updatedDate": "2023-07-19 11:51",
+            "distance": 0.0,
+            "estimatedTime": 0
+        },
+        "courier": null,
+        "status": "COMPLETED",
+        "total": 24.0,
+        "deliveryFee": 7.81100622123588,
+        "finalPrice": 31.81100622123588,
+        "quantity": 2,
+        "note": "the door code is 4322",
+        "d2Distance": 4.81100622123588,
+        "totalTime": 54,
+        "pickedupTime": 30,
+        "dropOffTime": 24,
+        "toLongitude": 25.47411,
+        "toLatitude": 65.05695,
+        "fromLongitude": 25.4962,
+        "fromLatitude": 65.0147,
+        "address": "yliopistokatu 12",
+        "zipcode": "90570",
+        "city": "oulu",
+        "createdDate": "2023-07-19 11:52",
+        "updatedDate": "2023-07-19 11:52"
+    }, {
+        "id": 3,
+        "customer": {
+            "id": 1,
+            "user": {
+                "id": 1,
+                "username": "quan",
+                "firstname": "quan",
+                "surename": "doan",
+                "roles": [
+                    "USER"
+                ],
+                "longitude": 25.4962,
+                "latitude": 65.0147,
+                "imageurl": null
+            }
+        },
+        "restaurant": {
+            "id": 2,
+            "name": "nekosama",
+            "address": "Kauppakortteli Pekuri, Kirkkokatu 16",
+            "imageurl": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/uber-eats/restaurant2.jpeg",
+            "owner": 2,
+            "city": "oulu",
+            "zipcode": "90100",
+            "latitude": 65.0147,
+            "longitude": 25.4962,
+            "rating": 4.0,
+            "cookingTime": 30,
+            "createdDate": "2023-07-19 11:51",
+            "updatedDate": "2023-07-19 11:51",
+            "distance": 0.0,
+            "estimatedTime": 0
+        },
+        "courier": null,
+        "status": "COMPLETED",
+        "total": 24.0,
+        "deliveryFee": 7.81100622123588,
+        "finalPrice": 31.81100622123588,
+        "quantity": 2,
+        "note": "the door code is 4322",
+        "d2Distance": 4.81100622123588,
+        "totalTime": 54,
+        "pickedupTime": 30,
+        "dropOffTime": 24,
+        "toLongitude": 25.47411,
+        "toLatitude": 65.05695,
+        "fromLongitude": 25.4962,
+        "fromLatitude": 65.0147,
+        "address": "yliopistokatu 12",
+        "zipcode": "90570",
+        "city": "oulu",
+        "createdDate": "2023-07-19 11:52",
+        "updatedDate": "2023-07-19 11:52"
+    }
+    
+]

@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "user": {
+        "id": 5,
+        "username": "duy",
+        "firstname": "duy",
+        "surename": "doan",
+        "roles": [
+            "USER"
+        ],
+        "longitude": 25.4905775,
+        "latitude": 65.0104222,
+        "imageurl": null
+    }
+}
