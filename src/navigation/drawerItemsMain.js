@@ -5,9 +5,9 @@ export const drawerItemsMain = [
       routes: [{nav: 'Drawer', routeName: 'Restaurant', title: 'Restaurant'}],
     },
     {
-      key: 'Details',
-      title: 'Details',
-      routes: [{nav: 'Drawer', routeName: 'Details', title: 'Details'}],
+      key: 'Dish',
+      title: 'Dish',
+      routes: [{nav: 'Drawer', routeName: 'Dish', title: 'Dish'}],
     },
     {
       key: 'Settings',

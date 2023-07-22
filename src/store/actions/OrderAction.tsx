@@ -4,9 +4,7 @@ import { HOST_URL } from "../store";
 import axios from "axios";
 import { ACTION, CHANGEPASSWORD, LoginForm,  ORDER,  ORDER_REQUEST,  ORDER_STATUS,  UserRegisterForm } from "../../model/index.d";
 import { Alert } from 'react-native'
-import { CheckoutScreenNavigationProp } from "../../screens/CheckoutScreen";
-import { OrderDetailedNavigationProp } from "../../screens/OrderDetailed";
-import { CompletedOrderDetailedNavigationProp } from "../../screens/CompletedOrderDetailed";
+
 
 
 
@@ -44,7 +42,7 @@ export const orderByIdAction = (orderID: number) => async (dispatch: Dispatch<AC
     }
 }
 
-export const completedOrdersAction = (customerID: number, status: ORDER_STATUS) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+export const ownerAcceptOrderAction = (orderID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
         const token : string | null = await AsyncStorage.getItem("token"); 
         if(token == null) {
@@ -55,88 +53,18 @@ export const completedOrdersAction = (customerID: number, status: ORDER_STATUS) 
                 payload: "token is null"
             });
         } else {
-            const res = await axios.get(HOST_URL + `/api/orders/customer/${customerID}/status/${status}`, {
-                headers: {
-                    "Authorization": token
-                }
-            });
-            const data : ORDER[] = res.data;
-            console.log("orders_completed_status_by_Customer");
-            console.log(res.data);
-            dispatch({
-                type: "orders_completed_status_by_Customer",
-                payload: data
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        Alert.alert("loading order failed") 
-        dispatch({
-            type: "order_error",
-            payload: "loading order failed"
-        });
-    }
-}
-
-export const AllOrdersofCustomerAction = (customerID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
-    try {
-        const token : string | null = await AsyncStorage.getItem("token"); 
-        if(token == null) {
-            console.log("token is null");
-            Alert.alert("token is null") 
-            dispatch({
-                type: "order_error",
-                payload: "token is null"
-            });
-        } else {
-            const res = await axios.get(HOST_URL + `/api/orders/customer/${customerID}`, {
-                headers: {
-                    "Authorization": token
-                }
-            });
-            const data : ORDER[] = res.data;
-            console.log("orders_by_Customer");
-            console.log(res.data);
-            dispatch({
-                type: "orders_by_Customer",
-                payload: data
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        // Alert.alert("loading order failed") 
-        dispatch({
-            type: "order_error",
-            payload: "loading order failed"
-        });
-    }
-}
-
-
-export const createOrderAction = (orderReq : ORDER_REQUEST, navigation: CheckoutScreenNavigationProp) => async (dispatch: Dispatch<ACTION>, getState: any) => {
-    try {
-        const token : string | null = await AsyncStorage.getItem("token"); 
-        if(token == null) {
-            console.log("token is null");
-            Alert.alert("token is null") 
-            dispatch({
-                type: "order_error",
-                payload: "token is null"
-            });
-        } else {
-            const res = await axios.post(HOST_URL + "/api/orders/order", orderReq,{
+            const res = await axios.put(HOST_URL + `/api/orders/order/id/${orderID}/acceptByOwner`, {},{
                 headers: {
                     "Authorization": token
                 }
             });
             const data : ORDER = res.data;
-            console.log("order_create");
+            console.log("order_owner_accept");
             console.log(res.data);
             dispatch({
-                type: "order_create",
+                type: "order_owner_accept",
                 payload: data
             })
-            navigation.navigate("OrderStack", {screen: "OrderDetailed", params: {orderID: data.id}})
         }
     } catch (err) {
         console.log(err);
@@ -148,7 +76,7 @@ export const createOrderAction = (orderReq : ORDER_REQUEST, navigation: Checkout
     }
 }
 
-export const reorderingAction = (preOrderID: number, navigation: CompletedOrderDetailedNavigationProp) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+export const ownerDeclineOrderAction = (orderID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
         const token : string | null = await AsyncStorage.getItem("token"); 
         if(token == null) {
@@ -159,19 +87,18 @@ export const reorderingAction = (preOrderID: number, navigation: CompletedOrderD
                 payload: "token is null"
             });
         } else {
-            const res = await axios.post(HOST_URL + "/api/orders/reorder/previousOrder/" + preOrderID, {},{
+            const res = await axios.put(HOST_URL + `/api/orders/order/id/${orderID}/rejectByOwner`, {},{
                 headers: {
                     "Authorization": token
                 }
             });
             const data : ORDER = res.data;
-            console.log("reordering_create");
+            console.log("order_owner_decline");
             console.log(res.data);
             dispatch({
-                type: "reordering_create",
+                type: "order_owner_decline",
                 payload: data
             })
-            navigation.navigate("OrderDetailed", {orderID: data.id});
         }
     } catch (err) {
         console.log(err);
@@ -182,6 +109,142 @@ export const reorderingAction = (preOrderID: number, navigation: CompletedOrderD
         });
     }
 }
+
+export const orderCookedAndReadyForPickupAction = (orderID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token"); 
+        if(token == null) {
+            console.log("token is null");
+            Alert.alert("token is null") 
+            dispatch({
+                type: "order_error",
+                payload: "token is null"
+            });
+        } else {
+            const res = await axios.put(HOST_URL + `/api/orders/order/id/${orderID}/finishCooking`, {},{
+                headers: {
+                    "Authorization": token
+                }
+            });
+            const data : ORDER = res.data;
+            console.log("order_ready_for_pickup");
+            console.log(res.data);
+            dispatch({
+                type: "order_ready_for_pickup",
+                payload: data
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading order failed") 
+        dispatch({
+            type: "order_error",
+            payload: "loading order failed"
+        });
+    }
+}
+export const listOrdersCompletedAction = (restaurantID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token"); 
+        if(token == null) {
+            console.log("token is null");
+            Alert.alert("token is null") 
+            dispatch({
+                type: "order_error",
+                payload: "token is null"
+            });
+        } else {
+            const res = await axios.get(HOST_URL + "/api/orders/completed/restaurant/" + restaurantID, {
+                headers: {
+                    "Authorization": token
+                }
+            });
+            const data : ORDER = res.data;
+            console.log("list_completed_orders_by_restaurant");
+            console.log(res.data);
+            dispatch({
+                type: "list_completed_orders_by_restaurant",
+                payload: data
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading order failed") 
+        dispatch({
+            type: "order_error",
+            payload: "loading order failed"
+        });
+    }
+}
+
+export const listOrdersInProgressAction = (restaurantID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token"); 
+        if(token == null) {
+            console.log("token is null");
+            Alert.alert("token is null") 
+            dispatch({
+                type: "order_error",
+                payload: "token is null"
+            });
+        } else {
+            const res = await axios.get(HOST_URL + "/api/orders/inprogress/restaurant/" + restaurantID, {
+                headers: {
+                    "Authorization": token
+                }
+            });
+            const data : ORDER = res.data;
+            console.log("list_inprogress_orders_by_restaurant");
+            console.log(res.data);
+            dispatch({
+                type: "list_inprogress_orders_by_restaurant",
+                payload: data
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading order failed") 
+        dispatch({
+            type: "order_error",
+            payload: "loading order failed"
+        });
+    }
+}
+
+export const listOrdersAction = (restaurantID: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token"); 
+        if(token == null) {
+            console.log("token is null");
+            Alert.alert("token is null") 
+            dispatch({
+                type: "order_error",
+                payload: "token is null"
+            });
+        } else {
+            const res = await axios.get(HOST_URL + "/api/orders/restaurant/" + restaurantID, {
+                headers: {
+                    "Authorization": token
+                }
+            });
+            const data : ORDER = res.data;
+            console.log("list_orders_by_restaurant");
+            console.log(res.data);
+            dispatch({
+                type: "list_orders_by_restaurant",
+                payload: data
+            })
+        }
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading order failed") 
+        dispatch({
+            type: "order_error",
+            payload: "loading order failed"
+        });
+    }
+}
+
 
 export const updateOrderFromWebsocket = (order: ORDER) => (dispatch : Dispatch<ACTION>, getState: any) => {
     dispatch({

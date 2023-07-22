@@ -5,7 +5,6 @@ const initialState = {
     message: null,
     ownerSuccess: false,
     ownerError: false,
-    hasRestaurant: false
 }
 
 export default (state:  declaredStateOwner = initialState, action: ACTION) => {
@@ -20,12 +19,6 @@ export default (state:  declaredStateOwner = initialState, action: ACTION) => {
             return {
                 ...state,
                 owner: action.payload,
-                ownerSuccess: true
-            }
-        case "check_restaurant_of_owner":
-            return {
-                ...state,
-                hasRestaurant: action.payload,
                 ownerSuccess: true
             }
         case "owner_error":

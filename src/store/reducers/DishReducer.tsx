@@ -1,4 +1,4 @@
-import { ACTION, declaredStateDish,  } from "../../model/index.d"
+import { ACTION, DISH, declaredStateDish,  } from "../../model/index.d"
 
 const initialState = {
     dish: {},
@@ -21,6 +21,27 @@ export default (state:  declaredStateDish= initialState, action: ACTION) => {
             return {
                 ...state,
                 dish: action.payload,
+                dishSuccess: true
+            }
+        case "dish_adding":
+            return {
+                ...state,
+                dish: action.payload,
+                dishes: [action.payload, ...state.dishes],
+                dishSuccess: true
+            }
+        case "dish_update_by_id":
+            return {
+                ...state,
+                dish: action.payload,
+                dishes: state.dishes.map((item: DISH) => item.id == action.payload.id ? action.payload : item),
+                dishSuccess: true
+            }
+        case "dish_update_availability_by_id":
+            return {
+                ...state,
+                dish: action.payload,
+                dishes: state.dishes.map((item: DISH) => item.id == action.payload.id ? action.payload : item),
                 dishSuccess: true
             }
         case "dish_error":

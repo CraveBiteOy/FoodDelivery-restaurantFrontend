@@ -2,42 +2,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import { Dispatch } from "react";
 import { HOST_URL } from "../store";
 import axios from "axios";
-import { ACTION } from "../../model/index.d";
+import { ACTION, RESTAURANT_CREATE } from "../../model/index.d";
 import { Alert } from 'react-native'
+import { RestaurantFormNavigationStack } from "../../screens/RestaurantForm";
 
-export const recommendedRestaurantsAction = () => async (dispatch: Dispatch<ACTION>, getState: any) => {
-    try {
-        const token : string | null = await AsyncStorage.getItem("token"); 
-        if(token == null) {
-            console.log("token is null");
-            Alert.alert("token is null") 
-            dispatch({
-                type: "restaurant_error",
-                payload: "token is null"
-            });
-        } else {
-            const res = await axios.get(HOST_URL + "/api/restaurants/recommendation", {
-                headers: {
-                    "Authorization": token
-                }
-            });
-            const data = res.data;
-            console.log("recommended_restaurants");
-            console.log(res.data);
-            dispatch({
-                type: "recommended_restaurants",
-                payload: data
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        Alert.alert("loading restaurants failed") 
-        dispatch({
-            type: "restaurant_error",
-            payload: "loading restaurants failed"
-        });
-    }
-}
+
 
 export const firstRestaurantForAuthOwnerAction = () => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
@@ -73,7 +42,7 @@ export const firstRestaurantForAuthOwnerAction = () => async (dispatch: Dispatch
     }
 }
 
-export const checkRestaurantForAuthOwnerAction = () => async (dispatch: Dispatch<ACTION>, getState: any) => {
+export const createRestaurantAction = (restaurant: RESTAURANT_CREATE, navigation: RestaurantFormNavigationStack) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
         const token : string | null = await AsyncStorage.getItem("token"); 
         if(token == null) {
@@ -84,16 +53,51 @@ export const checkRestaurantForAuthOwnerAction = () => async (dispatch: Dispatch
                 payload: "token is null"
             });
         } else {
-            const res = await axios.get(HOST_URL + "/api/restaurants/authenticatedOwner/checkRestaurants", {
+            const res = await axios.post(HOST_URL + "/api/restaurants/restaurant", restaurant,{
                 headers: {
                     "Authorization": token
                 }
             });
             const data = res.data;
-            console.log("check_restaurant_of_owner");
+            console.log("restaurant_create");
             console.log(res.data);
             dispatch({
-                type: "check_restaurant_of_owner",
+                type: "restaurant_create",
+                payload: data
+            })
+            navigation.navigate("Drawer")
+        }
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading restaurants failed") 
+        dispatch({
+            type: "restaurant_error",
+            payload: "loading restaurants failed"
+        });
+    }
+}
+
+export const updateRestaurantAction = (RestaurantId: number, name: string | null, imageurl: string | null, cookingTime: number | null) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token"); 
+        if(token == null) {
+            console.log("token is null");
+            Alert.alert("token is null") 
+            dispatch({
+                type: "restaurant_error",
+                payload: "token is null"
+            });
+        } else {
+            const res = await axios.put(HOST_URL + `/api/restaurants/restaurant/id/${RestaurantId}?name=${name}&imageurl=${imageurl}&cookingTime=${cookingTime}`, {},{
+                headers: {
+                    "Authorization": token
+                }
+            });
+            const data = res.data;
+            console.log("restaurant_update");
+            console.log(res.data);
+            dispatch({
+                type: "restaurant_update",
                 payload: data
             })
         }
@@ -106,6 +110,7 @@ export const checkRestaurantForAuthOwnerAction = () => async (dispatch: Dispatch
         });
     }
 }
+
 
 export const restaurantByIdAction = (restaurantId: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
@@ -140,39 +145,7 @@ export const restaurantByIdAction = (restaurantId: number) => async (dispatch: D
         });
     }
 }
-export const restaurantByIdAndAuthCustomerAction = (restaurantId: number) => async (dispatch: Dispatch<ACTION>, getState: any) => {
-    try {
-        const token : string | null = await AsyncStorage.getItem("token"); 
-        if(token == null) {
-            console.log("token is null");
-            Alert.alert("token is null") 
-            dispatch({
-                type: "restaurant_error",
-                payload: "token is null"
-            });
-        } else {
-            const res = await axios.get(HOST_URL + "/api/restaurants/restaurant/authenticatedCustomer/id/" + restaurantId, {
-                headers: {
-                    "Authorization": token
-                }
-            });
-            const data = res.data;
-            console.log("restaurant_by_id");
-            console.log(res.data);
-            dispatch({
-                type: "restaurant_by_id",
-                payload: data
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        Alert.alert("loading restaurant failed") 
-        dispatch({
-            type: "restaurant_error",
-            payload: "loading restaurant failed"
-        });
-    }
-}
+
 export const restaurantByNameAction = (restaurantName: string) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
         const token : string | null = await AsyncStorage.getItem("token"); 

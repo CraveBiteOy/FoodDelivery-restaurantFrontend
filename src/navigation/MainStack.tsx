@@ -2,13 +2,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Drawer from './Drawer';
+import LoginScreen from '../screens/LoginScreen';
+import RestaurantForm from '../screens/RestaurantForm';
 
 
-type MainStackParamList = {
-  Drawer: {
-    screen: string,
-    params: any
-  }
+export type MainStackParamList = {
+  LoginScreen: undefined,
+  Drawer: undefined,
+  RestaurantForm: undefined
 }
 
 
@@ -19,8 +20,12 @@ const MainStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }}>
+      }}
+      initialRouteName='LoginScreen'
+    >
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="Drawer" component={Drawer} />
+      <Stack.Screen name="RestaurantForm" component={RestaurantForm} />
     </Stack.Navigator>
   );
 };

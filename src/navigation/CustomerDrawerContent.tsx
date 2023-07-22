@@ -104,10 +104,10 @@ function CustomDrawerContent(props : any) {
         // forceInset={{top: 'always', horizontal: 'never'}}
       >
         <View style={styles.centered}>
-          <Image
+          {/* <Image
             source={{uri: 'https://reactjs.org/logo-og.png'}}
             style={styles.logo}
-          />
+          /> */}
         </View>
         {mainDrawer ? renderMainDrawer() : renderFilteredItemsDrawer()}
       </SafeAreaView>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     height: 75,
   },
   drawerContainer: {
-    backgroundColor: '#222222',
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
@@ -141,14 +141,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: '#f7691a',
     paddingTop: 4,
     paddingBottom: 4,
   },
   title: {
     margin: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: '#F0F0F0',
+    color: '#f7691a',
     textAlign: 'center',
   },
   backButtonRow: {
@@ -156,12 +157,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 17,
     paddingLeft: 3,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: '#f7691a',
     borderBottomWidth: 1,
   },
   backButtonText: {
     marginLeft: 10,
-    color: '#F0F0F0',
+    color: '#f7691a',
   },
 });
 

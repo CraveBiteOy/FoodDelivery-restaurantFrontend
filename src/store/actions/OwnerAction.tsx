@@ -73,8 +73,29 @@ export const ownerByAuthUserAction = () => async (dispatch: Dispatch<ACTION>, ge
     }
 }
 
+
 export const resetOwnerAction = () => (dispatch : Dispatch<ACTION>, getState: any) => {
     dispatch({
         type: "owner_reset"
     })
+}
+
+export const checkHasRestaurant = async (token: string) => {
+    try {
+        
+        const res = await axios.get(HOST_URL + "/api/restaurants/authenticatedOwner/checkRestaurants", {
+                headers: {
+                    "Authorization": token
+                }
+        });
+        const data = res.data;
+        console.log("check_restaurant_of_owner");
+        console.log(res.data);
+        return data;
+        
+    } catch (err) {
+        console.log(err);
+        Alert.alert("loading restaurants failed") 
+        return false;
+    }
 }

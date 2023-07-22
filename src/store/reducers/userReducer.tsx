@@ -71,8 +71,6 @@ export default (state: declaredStateUser = initialState, action: ACTION) => {
         case "USER_RESET": 
             return {
                 ...state,
-                userUpdateStatus: false,
-                userUpdated: {},
                 message: null,
                 authSuccess: false,
                 authError: false

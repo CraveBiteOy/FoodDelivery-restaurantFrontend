@@ -10,12 +10,6 @@ const initialState = {
 
 export default (state: declaredStateRestaurant = initialState, action: ACTION) => {
     switch (action.type) {
-        case "recommended_restaurants":
-            return {
-                ...state,
-                restaurants: action.payload,
-                restaurantSuccess: true
-            }
         case "restaurant_by_name":
             return {
                 ...state,
@@ -34,7 +28,13 @@ export default (state: declaredStateRestaurant = initialState, action: ACTION) =
                 restaurant: action.payload,
                 restaurantSuccess: true
             }
-        case "restaurant_by_id_and_authCustomer":
+        case "restaurant_create":
+            return {
+                ...state,
+                restaurant: action.payload,
+                restaurantSuccess: true
+            }
+        case "restaurant_update":
             return {
                 ...state,
                 restaurant: action.payload,

@@ -28,8 +28,8 @@ export interface ACTION {
 export interface LoginForm {
     username: string,
     password: string,
-    longitude: number |null,
-    latitude: number |null
+    longitude?: number |null,
+    latitude?: number |null
 }
 
 export interface UserRegisterForm {
@@ -232,8 +232,7 @@ export interface declaredStateOwner  {
     owner: OWNER | {}
     message: string | null,
     ownerSuccess: boolean,
-    ownerError: boolean,
-    hasRestaurant: boolean
+    ownerError: boolean
 }
 
 export interface RESTAURANT_CREATE {
@@ -241,7 +240,8 @@ export interface RESTAURANT_CREATE {
     address: string,
     imageurl: string,
     city: string,
-    zipcode: string
+    zipcode: string,
+    cookingTime: number
 }
 
 export interface DISH_CREATE {

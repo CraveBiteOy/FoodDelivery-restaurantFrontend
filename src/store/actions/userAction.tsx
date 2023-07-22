@@ -4,15 +4,15 @@ import { HOST_URL } from "../store";
 import axios from "axios";
 import { ACTION, CHANGEPASSWORD, LoginForm,  UserRegisterForm } from "../../model/index.d";
 import { Alert } from 'react-native'
+import { LoginNavigationStack } from "../../screens/LoginScreen";
+import { checkHasRestaurant } from "./OwnerAction";
 
-export const login = (loginForm: LoginForm) => async (dispatch: Dispatch<ACTION>, getState: any) => {
-    const {longitude, latitude, username, password} = loginForm;
+export const login = (loginForm: LoginForm, navigation: LoginNavigationStack) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    const { username, password} = loginForm;
     try {
         const res = await axios.put(HOST_URL + "/api/users/signIn", {
             username,
-            password,
-            longitude,
-            latitude
+            password
         });
  
         const data = res.data
@@ -25,6 +25,13 @@ export const login = (loginForm: LoginForm) => async (dispatch: Dispatch<ACTION>
             type: "LOG_IN",
             payload: data
         })
+
+        const hasRestaurant : boolean = await checkHasRestaurant(token);
+        if(hasRestaurant == true) {
+            navigation.navigate("Drawer");
+        } else if (hasRestaurant == false) {
+            navigation.navigate("RestaurantForm");
+        }    
     } catch (err) {
         console.log(err);
         Alert.alert("login failed") 
