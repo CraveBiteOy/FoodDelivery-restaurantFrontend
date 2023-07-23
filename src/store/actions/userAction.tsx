@@ -252,7 +252,29 @@ export const updateProfileAction = (firstname?: string, surename?: string) => as
     }  
  }
 
- 
+ export const updateImageProfileAction = (imageurl: string) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+    try {
+        const token : string | null = await AsyncStorage.getItem("token");      
+        const res = await axios.put(HOST_URL + "/api/users/authUser/updateImage/" + imageurl, {}, {
+            headers: {
+                "Authorization": token ?? ""
+            }
+        })
+        const data = await res.data;
+        console.log("update images successfully")
+        console.log(data);
+        dispatch({
+            type: "update_image",
+            payload: data
+        })
+        // Alert.alert("Updated  successfully"); 
+    } catch (err) {
+        dispatch({
+            type: "USER_ERROR",
+            payload: err
+        })
+    }  
+ }
 
  export const ResetUser = () => (dispatch : Dispatch<ACTION>, getState: any) => {
      dispatch({

@@ -43,6 +43,12 @@ export default (state: declaredStateUser = initialState, action: ACTION) => {
                 authUser: action.payload,
                 userSuccess: true
             }
+        case "update_image":
+            return {
+                ...state,
+                authUser: action.payload,
+                userSuccess: true
+            }
         case "update_coordinate":
             return {
                 ...state,

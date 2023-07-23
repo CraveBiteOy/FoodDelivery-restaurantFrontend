@@ -253,6 +253,21 @@ export const updateOrderFromWebsocket = (order: ORDER) => (dispatch : Dispatch<A
     })
 }
 
+export const receiveNewOrderForOrderListFromWebsocket = (order: ORDER) => (dispatch : Dispatch<ACTION>, getState: any) => {
+    dispatch({
+        type: "receive_new_order_in_order_list_from_websocket_Subscription",
+        payload: order
+    })
+}
+
+export const receiveUpdatedOrderForOrderListFromWebsocket = (order: ORDER) => (dispatch : Dispatch<ACTION>, getState: any) => {
+    dispatch({
+        type: "receive_updated_order_in_order_list_from_websocket_Subscription",
+        payload: order
+    })
+}
+
+
 export const resetOrderAction = () => (dispatch : Dispatch<ACTION>, getState: any) => {
     dispatch({
         type: "order_reset"

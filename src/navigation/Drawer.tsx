@@ -3,8 +3,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import { Text, View, TouchableOpacity } from 'react-native';
 import CustomDrawerContent from './CustomerDrawerContent';
 import { drawerItemsMain } from './drawerItemsMain';
-import Settting1 from '../screens/Settting1';
-import Setting2 from '../screens/Setting2';
 import YourRestaurant from '../screens/YourRestaurant';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -16,12 +14,16 @@ import DishStack from './DishStack';
 import { useTailwind } from 'tailwind-rn';
 import Ionicons from "react-native-vector-icons/Ionicons"
 import { firstRestaurantForAuthOwnerAction } from '../store/actions/RestaurantAction';
+import CompletedOrderScreen from '../screens/CompletedOrderScreen';
+import ActiveOrderScreen from '../screens/ActiveOrderScreen';
+import PersonalStack from './PersonalStack';
 
 export type DrawerNavigationType = {
   Restaurant: undefined,
   Dish: undefined,
-  Setting1: undefined,
-  Setting2: undefined
+  CompletedOrders: undefined,
+  ActiveOrders: undefined,
+  PersonalProfile: undefined
 }
 
 
@@ -60,7 +62,8 @@ const Drawer = () => {
           headerTitleStyle: {
             color: "#f7691a",
             fontWeight: "bold"
-          }
+          },
+          unmountOnBlur:true
         }}
       />
       <Drawer.Screen 
@@ -77,11 +80,49 @@ const Drawer = () => {
             <TouchableOpacity onPress={() =>  navigation.navigate("DishForm", {dishID: null, restaurantID: restaurant?.id})}  style={[{width: 40, height: 40}, tw('bg-[#f7691a] rounded-full  items-center justify-center mr-4 p-2')]}>
                 <Ionicons name='add' size={20} color="white"/>
             </TouchableOpacity>
-          )
+          ),
+          unmountOnBlur:true
         })}
       />
-      <Drawer.Screen name="Setting1" component={Settting1} />
-      <Drawer.Screen name="Setting2" component={Setting2} />
+      <Drawer.Screen 
+        name="ActiveOrders" 
+        component={ActiveOrderScreen} 
+        options={{
+          headerTitle: "In-Progress orders", 
+          headerShown: true,
+          headerTitleStyle: {
+            color: "#f7691a",
+            fontWeight: "bold"
+          },
+          unmountOnBlur:true
+        }}
+      />
+      <Drawer.Screen 
+        name="CompletedOrders" 
+        component={CompletedOrderScreen} 
+        options={{
+          headerTitle: "Completed orders", 
+          headerShown: true,
+          headerTitleStyle: {
+            color: "#f7691a",
+            fontWeight: "bold"
+          },
+          unmountOnBlur:true
+        }}
+      />
+      <Drawer.Screen 
+        name="PersonalProfile" 
+        component={PersonalStack} 
+        options={{
+          headerTitle: "Your Profile", 
+          headerShown: true,
+          headerTitleStyle: {
+            color: "#f7691a",
+            fontWeight: "bold"
+          },
+          unmountOnBlur:true
+        }}
+      />
     </Drawer.Navigator>
   );
 };

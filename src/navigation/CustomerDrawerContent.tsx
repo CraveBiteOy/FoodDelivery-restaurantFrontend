@@ -34,7 +34,7 @@ function CustomDrawerContent(props : any) {
     }
   };
 
-  const logOut = async () => console.log('log out');
+  const logOut = async () => props.navigation.navigate("LoginScreen");
 
   function renderMainDrawer() {
     return (
@@ -64,7 +64,7 @@ function CustomDrawerContent(props : any) {
         <TouchableOpacity
           onPress={() => toggleMainDrawer()}
           style={styles.backButtonRow}>
-          <Text style={[styles.backButtonText, styles.title]}>{'BACK'}</Text>
+          <Text style={[styles.backButtonText, styles.title, {fontSize: 14}]}>{'BACK'}</Text>
         </TouchableOpacity>
         {filteredItems.routes.map((route : any) => {
           return (
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   title: {
     margin: 16,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#f7691a',
     textAlign: 'center',

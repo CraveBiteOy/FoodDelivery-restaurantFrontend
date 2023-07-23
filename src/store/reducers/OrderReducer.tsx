@@ -37,28 +37,40 @@ export default (state:  declaredStateOrder= initialState, action: ACTION) => {
         case "order_owner_accept":
             return {
                 ...state,
-                order: action.payload,
-                orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
+                // order: action.payload,
+                // orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
                 orderSuccess: true
             }
         case "order_owner_decline":
             return {
                 ...state,
-                order: action.payload,
-                orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
+                // order: action.payload,
+                // orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
                 orderSuccess: true
             }
         case "order_ready_for_pickup":
             return {
                 ...state,
-                order: action.payload,
-                orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
+                // order: action.payload,
+                // orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
                 orderSuccess: true
             }
         case "order_update_from_websocket_Subscription":
             return {
                 ...state,
-                // order: action.payload,
+                order: action.payload,
+                orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
+                orderSuccess: true
+            }
+        case "receive_new_order_in_order_list_from_websocket_Subscription":
+            return {
+                ...state,
+                orders: [action.payload, ...state.orders],
+                orderSuccess: true
+            }
+        case "receive_updated_order_in_order_list_from_websocket_Subscription":
+            return {
+                ...state,
                 orders: state.orders.map((item: ORDER) => item.id == action.payload.id ? action.payload : item),
                 orderSuccess: true
             }

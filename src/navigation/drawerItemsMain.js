@@ -10,11 +10,16 @@ export const drawerItemsMain = [
       routes: [{nav: 'Drawer', routeName: 'Dish', title: 'Dish'}],
     },
     {
-      key: 'Settings',
-      title: 'Settings',
+      key: 'Orders',
+      title: 'Orders',
       routes: [
-        {nav: 'Drawer', routeName: 'Setting1', title: 'Settings 1'},
-        {nav: 'Drawer', routeName: 'Setting2', title: 'Settings 2'},
+        {nav: 'Drawer', routeName: 'ActiveOrders', title: 'In-progress Orders'},
+        {nav: 'Drawer', routeName: 'CompletedOrders', title: 'Completed Orders'},
       ],
+    },
+    {
+      key: 'PersonalStack',
+      title: 'Your Profile',
+      routes: [{nav: 'Drawer', routeName: 'PersonalProfile', title: 'Personal Profile'}],
     },
   ];
