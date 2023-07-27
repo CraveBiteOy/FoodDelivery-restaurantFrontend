@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {DrawerContentComponentProps, createDrawerNavigator} from '@react-navigation/drawer';
 import { Text, View, TouchableOpacity } from 'react-native';
 import CustomDrawerContent from './CustomerDrawerContent';
 import { drawerItemsMain } from './drawerItemsMain';
@@ -17,6 +17,9 @@ import { firstRestaurantForAuthOwnerAction } from '../store/actions/RestaurantAc
 import CompletedOrderScreen from '../screens/CompletedOrderScreen';
 import ActiveOrderScreen from '../screens/ActiveOrderScreen';
 import PersonalStack from './PersonalStack';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export type DrawerNavigationType = {
   Restaurant: undefined,
@@ -47,6 +50,7 @@ const Drawer = () => {
     <Drawer.Navigator
       screenOptions={{ 
         drawerPosition: 'left',
+        headerTintColor: "#f7691a"
       }}
       initialRouteName='Restaurant'
       drawerContent={(props: any) =>(
@@ -63,7 +67,10 @@ const Drawer = () => {
             color: "#f7691a",
             fontWeight: "bold"
           },
-          unmountOnBlur:true
+          unmountOnBlur:true,
+          drawerIcon: ({focused}) => (
+            <AntDesign size={30} name="home" color={focused ? "#f7691a" : "#f7b38d"}></AntDesign>
+          )
         }}
       />
       <Drawer.Screen 
@@ -77,8 +84,8 @@ const Drawer = () => {
             fontWeight: "bold"
           },
           headerRight: () => (
-            <TouchableOpacity onPress={() =>  navigation.navigate("DishForm", {dishID: null, restaurantID: restaurant?.id})}  style={[{width: 40, height: 40}, tw('bg-[#f7691a] rounded-full  items-center justify-center mr-4 p-2')]}>
-                <Ionicons name='add' size={20} color="white"/>
+            <TouchableOpacity onPress={() =>  navigation.navigate("DishForm", {dishID: null, restaurantID: restaurant?.id})}  style={[{width: 50, height: 50}, tw('bg-white rounded-full  items-center justify-center mr-4 p-2')]}>
+                <Entypo name='add-to-list' size={32} color="#f7691a"/>
             </TouchableOpacity>
           ),
           unmountOnBlur:true

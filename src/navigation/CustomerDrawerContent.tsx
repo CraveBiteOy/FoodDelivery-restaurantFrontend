@@ -8,8 +8,13 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTailwind } from 'tailwind-rn';
 
 function CustomDrawerContent(props : any) {
+  const tw = useTailwind();
   const [mainDrawer, setMainDrawer] = useState<boolean>(true);
   const [filteredItems, setFilteredItems] = useState<any>([]);
 
@@ -48,7 +53,8 @@ function CustomDrawerContent(props : any) {
                 onItemParentPress(parent.key);
               }}>
               <View style={styles.parentItem}>
-                <Text style={[ styles.title]}>{parent.title}</Text>
+                <Ionicons size={30} name={parent.iconName} color={"#f7691a"}></Ionicons>
+                <Text style={[ styles.title, tw('ml-8')]}>{parent.title}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -76,8 +82,10 @@ function CustomDrawerContent(props : any) {
                   screen: route.routeName,
                 })
               }
-              >
-              <Text style={styles.title}>{route.title}</Text>
+              style={tw('flex-row items-center ml-10 my-4')}
+            >
+              <MaterialCommunityIcons size={30} name={route.iconName} color={"#f7691a"}></MaterialCommunityIcons>
+              <Text style={[styles.title, tw('ml-4')]}>{route.title}</Text>
             </TouchableOpacity>
           );
         })}
@@ -90,7 +98,8 @@ function CustomDrawerContent(props : any) {
       <View>
         <TouchableOpacity onPress={logOut} testID="customDrawer-logout">
           <View style={styles.parentItem}>
-            <Text style={styles.title}>{'Log out'}</Text>
+            <Entypo size={30} name='log-out' color={"#f7691a"}></Entypo>
+            <Text style={[styles.title, tw('ml-8')]}>{'Log out'}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -104,10 +113,10 @@ function CustomDrawerContent(props : any) {
         // forceInset={{top: 'always', horizontal: 'never'}}
       >
         <View style={styles.centered}>
-          {/* <Image
-            source={{uri: 'https://reactjs.org/logo-og.png'}}
+          <Image
+            source={require("../assets/MicrosoftTeams-image.png")}
             style={styles.logo}
-          /> */}
+          />
         </View>
         {mainDrawer ? renderMainDrawer() : renderFilteredItemsDrawer()}
       </SafeAreaView>
@@ -124,20 +133,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 100,
-    height: 75,
+    width: 140,
+    height: 70,
   },
   drawerContainer: {
     backgroundColor: 'white',
   },
   container: {
     flex: 1,
+    width: "100%",
     zIndex: 1000,
   },
   centered: {
     alignItems: 'center',
+    marginVertical: 20
   },
   parentItem: {
+    marginLeft: 10,
+    marginVertical: 14,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
@@ -146,7 +159,7 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   title: {
-    margin: 16,
+    marginHorizontal: 4,
     fontSize: 18,
     fontWeight: 'bold',
     color: '#f7691a',

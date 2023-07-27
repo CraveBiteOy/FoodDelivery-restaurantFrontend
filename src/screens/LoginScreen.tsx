@@ -1,4 +1,4 @@
-import { Alert,  Keyboard, KeyboardAvoidingView, KeyboardAvoidingViewBase, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
+import { Alert,  Keyboard, KeyboardAvoidingView, KeyboardAvoidingViewBase, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import useTailwind from 'tailwind-rn/dist/use-tailwind'
@@ -45,7 +45,13 @@ const LoginScreen = () => {
 
     <KeyboardAvoidingView style={tw('flex-1')}>
         <TouchableWithoutFeedback style={tw('flex-1')} onPress={Keyboard.dismiss}>
-            <SafeAreaView style={tw('flex-1 items-center justify-center px-4')}>                 
+            <SafeAreaView style={tw('flex-1 items-center justify-start px-4')}>              
+                <View style={styles.centered}>
+                    <Image
+                        source={require("../assets/MicrosoftTeams-image.png")}
+                        style={styles.logo}
+                    />
+                </View>   
                 <TextInput value={username} placeholder="username" onChangeText={(text: string) => setUsername(text)} style={tw('w-full border border-gray-400 py-2 px-4 rounded-lg text-lg mb-6')}></TextInput>
                 <TextInput secureTextEntry={true} value={password}  placeholder="Password" onChangeText={(text: string) => setPassword(text)} style={tw('w-full border border-gray-400 py-2 px-4 rounded-lg text-lg mb-6')} onSubmitEditing={submitFunction}></TextInput>
                 <Button  color="#f7691a" containerStyle={tw('w-full rounded-lg mb-6')} size='lg' title='Log In' onPress={submitFunction}></Button>
@@ -65,5 +71,12 @@ const LoginScreen = () => {
 export default LoginScreen
 
 const styles = StyleSheet.create({
-   
+    logo: {
+        width: 200,
+        height: 100,
+    },
+    centered: {
+        alignItems: 'center',
+        marginVertical: 100
+    },
 })

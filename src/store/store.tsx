@@ -13,7 +13,7 @@ import OwnerReducer from './reducers/OwnerReducer';
 
 
 
-export const HOST_URL= "http://192.168.0.102:8080";
+export const HOST_URL= "http://100.76.188.137:8080";
 const initialState= {};
 
 const rootReducer = combineReducers({
