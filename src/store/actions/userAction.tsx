@@ -6,6 +6,8 @@ import { ACTION, CHANGEPASSWORD, LoginForm,  UserRegisterForm } from "../../mode
 import { Alert } from 'react-native'
 import { LoginNavigationStack } from "../../screens/LoginScreen";
 import { checkHasRestaurant } from "./OwnerAction";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MainStackParamList } from "../../navigation/MainStack";
 
 export const login = (loginForm: LoginForm, navigation: LoginNavigationStack) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     const { username, password} = loginForm;
@@ -42,7 +44,7 @@ export const login = (loginForm: LoginForm, navigation: LoginNavigationStack) =>
     }
 }
  
-export const Register = (registerForm: UserRegisterForm) => async (dispatch: Dispatch<ACTION>, getState: any) => {
+export const Register = (registerForm: UserRegisterForm, navigation: NativeStackNavigationProp<MainStackParamList>) => async (dispatch: Dispatch<ACTION>, getState: any) => {
      try {
         console.log("sign up")
         const res = await axios.post(HOST_URL + "/api/users/signup", registerForm);
@@ -55,6 +57,7 @@ export const Register = (registerForm: UserRegisterForm) => async (dispatch: Dis
             type: "REGISTER",
             payload: data
         })
+        navigation.navigate("RestaurantForm");
      } catch (err) {
       dispatch({
           type: "USER_ERROR",
@@ -189,37 +192,37 @@ export const Register = (registerForm: UserRegisterForm) => async (dispatch: Dis
 
 
  
-  export const LogOutAction = () => async (dispatch: Dispatch<ACTION>, getState: any) => {
-     try {
-        const token : string | null = await AsyncStorage.getItem("token"); 
-        if (token == null) {
-            console.log("token is null");
-            Alert.alert("token is null") 
-            dispatch({
-                type: "USER_ERROR",
-                payload: "token is null"
-            });
-        } else {
-            await axios.get(HOST_URL + "/logout", {
-                headers: {
-                    "Authorization": token
-                }
-            })
-        }
-        await AsyncStorage.removeItem("token");
-        console.log("logout");
-        dispatch({
-            type: "LOG_OUT"
-        })
+//   export const LogOutAction = () => async (dispatch: Dispatch<ACTION>, getState: any) => {
+//      try {
+//         const token : string | null = await AsyncStorage.getItem("token"); 
+//         if (token == null) {
+//             console.log("token is null");
+//             Alert.alert("token is null") 
+//             dispatch({
+//                 type: "USER_ERROR",
+//                 payload: "token is null"
+//             });
+//         } else {
+//             await axios.get(HOST_URL + "/logout", {
+//                 headers: {
+//                     "Authorization": token
+//                 }
+//             })
+//         }
+//         await AsyncStorage.removeItem("token");
+//         console.log("logout");
+//         dispatch({
+//             type: "LOG_OUT"
+//         })
       
-     } catch (err) {
-        dispatch({
-            type: "USER_ERROR",
-            payload: err
-        })
-     }
+//      } catch (err) {
+//         dispatch({
+//             type: "USER_ERROR",
+//             payload: err
+//         })
+//      }
   
-}
+// }
 
 export const updateProfileAction = (firstname?: string, surename?: string) => async (dispatch: Dispatch<ACTION>, getState: any) => {
     try {
@@ -281,4 +284,11 @@ export const updateProfileAction = (firstname?: string, surename?: string) => as
          type: "USER_RESET"
      })
  }
+
+ export const logoutAction = () => async (dispatch : Dispatch<ACTION>, getState: any) => {
+    await AsyncStorage.removeItem("token");
+    dispatch({
+        type: "USER_RESET"
+    })
+}
  

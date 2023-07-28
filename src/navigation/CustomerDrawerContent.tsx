@@ -12,11 +12,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTailwind } from 'tailwind-rn';
+import { logoutAction } from '../store/actions/userAction';
+import { useDispatch } from 'react-redux';
 
 function CustomDrawerContent(props : any) {
   const tw = useTailwind();
   const [mainDrawer, setMainDrawer] = useState<boolean>(true);
   const [filteredItems, setFilteredItems] = useState<any>([]);
+  const dispatch = useDispatch();
 
   const toggleMainDrawer = () => {
     setMainDrawer(true);
@@ -39,7 +42,10 @@ function CustomDrawerContent(props : any) {
     }
   };
 
-  const logOut = async () => props.navigation.navigate("LoginScreen");
+  const logOut = async () => {
+    dispatch(logoutAction() as any);
+    props.navigation.navigate("LoginScreen");
+  };
 
   function renderMainDrawer() {
     return (

@@ -59,12 +59,20 @@
   margin-bottom: 2rem
 }
 
+.ml-10 {
+  margin-left: 2.5rem
+}
+
 .ml-4 {
   margin-left: 1rem
 }
 
 .ml-6 {
   margin-left: 1.5rem
+}
+
+.ml-8 {
+  margin-left: 2rem
 }
 
 .mr-4 {
@@ -93,14 +101,6 @@
 
 .mt-8 {
   margin-top: 2rem
-}
-
-.ml-8 {
-  margin-left: 2rem
-}
-
-.ml-10 {
-  margin-left: 2.5rem
 }
 
 .block {
@@ -149,10 +149,6 @@
 
 .justify-start {
   justify-content: flex-start
-}
-
-.justify-end {
-  justify-content: flex-end
 }
 
 .justify-center {

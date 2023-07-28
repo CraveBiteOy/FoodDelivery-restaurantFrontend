@@ -5,10 +5,12 @@ import Drawer from './Drawer';
 import LoginScreen from '../screens/LoginScreen';
 import RestaurantForm from '../screens/RestaurantForm';
 import DetailedOrderScreen from '../screens/DetailedOrderScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 
 
 export type MainStackParamList = {
   LoginScreen: undefined,
+  SignUp: undefined,
   Drawer: undefined,
   RestaurantForm: undefined,
   DetailedOrderScreen: {
@@ -28,6 +30,7 @@ const MainStack = () => {
       initialRouteName='LoginScreen'
     >
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="Drawer" component={Drawer} />
       <Stack.Screen name="RestaurantForm" component={RestaurantForm} />
       <Stack.Screen name="DetailedOrderScreen" component={DetailedOrderScreen} />
