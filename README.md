@@ -1,4 +1,4 @@
-# Customer Mobile App - Food Delivery
+# Restaurant Mobile App - Food Delivery
 The mobile app is used for restaurants to confirm the orders and keep tracking the orders in real-time.
 
 # Food Delivery Project
