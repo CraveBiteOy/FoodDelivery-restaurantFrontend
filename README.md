@@ -2,6 +2,8 @@
 The mobile app is used for restaurants to confirm the orders and keep tracking the orders in real-time.
 
 # Food Delivery Project
+The project aims to simulate the whole process of food delivery from the time when customer makes the order, then the restaurant confirms and cooks the order, the order is finally delivery by the courier to the customer's destination. The project focuses on the order delivery tracking in real-time, so all customer, restaurant, courier will be informed of the order's status whenever it's status get updated by other entities. The project includes three separate mobile apps for couriers, customers, and restaurants.  
+
 The Food delivery project includes 4 repositories and was developed by Quan Doan And Hajri Mohamed.
 - Customer mobile: Quan Doan 
 - Restaurant mobile: Quan Doan
